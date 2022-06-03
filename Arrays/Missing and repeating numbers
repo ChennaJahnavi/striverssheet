@@ -1,0 +1,58 @@
+TC-O(n)
+SC-O(n)
+
+#1
+class Solution:
+    # @param A : tuple of integers
+    # @return a list of integers
+    def repeatedNumber(self, A):
+        size = len(A) + 1
+        count = [0] * size
+
+        for val in A:
+            count[val] += 1
+
+            res1 = 0
+            res2 = 0
+
+        for idx, val in enumerate(count):
+            if val == 2:
+                res1 = idx
+            if val == 0:
+                res2 = idx
+
+        return res1, res2
+
+#2
+class Solution:
+    # @param A : tuple of integers
+    # @return a list of integers
+    def repeatedNumber(self, A):
+        n = len(A)
+        target_sum = n*(n+1)//2
+        actual_sum = sum(A)
+        difference = target_sum - actual_sum
+        # now find the duplicate repeatedNumber
+        seen = [0]*(n+1)
+        for num in A:
+            if seen[num]:
+                ans = num
+                break
+            seen[num] = 1
+        
+        return ans, ans+difference
+ 
+ #3
+ Tc-Sc-O(1)
+ class Solution:
+    # @param A : tuple of integers
+    # @return a list of integers
+    def repeatedNumber(self, A):
+        n = len(A)
+        x = sum(A) - sum(set(A))
+        k = sum(A) - int(n*(n+1)/2)
+    
+        return [x,x-k]
+
+        
+ 
